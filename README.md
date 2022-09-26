@@ -1,24 +1,54 @@
-# README
+# usersテーブル
+| Column             | Type     | Options                   |
+| ------------------ | -------- | ------------------------- |
+| name               | string   | null: false               |
+| email              | string   | null: false, unique: true |
+| encrypted_password | string   | null: false               |
+| name(kanji)        | string   | null: false               |
+| name(kana)         | string   | null: false               |
+| birthday           | date     | null: false               |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# association
+- has_many :products
+- belongs_to :shipping_address
+- belongs_to :credit_cards
 
-Things you may want to cover:
+# productsテーブル
+| Column             | Type     | Options                   |
+| ------------------ | -------- | ------------------------- |
+| name               | string   | null: false               |
+| explanation        | text     | null: false               |
+| category           | string   | null: false               |
+| situation          | string   | null: false               |
+| delivery_charge    | string   | null: false               |
+| area               | string   | null: false               |
+| number_of_days     | string   | null: false               |
+| price              | integer  | null: false               |
 
-* Ruby version
+# association
+- belongs_to :users
 
-* System dependencies
+# shipping_addressテーブル
+| Column             | Type     | Options                   |
+| ------------------ | -------- | ------------------------- |
+| name               | string   | null: false               |
+| explanation        | text     | null: false               |
+| category           | string   | null: false               |
+| situation          | string   | null: false               |
+| delivery_charge    | string   | null: false               |
+| area               | string   | null: false               |
+| number_of_days     | string   | null: false               |
+| price              | integer  | null: false               |
 
-* Configuration
+# association
+- belongs_to :users
 
-* Database creation
+# credit_cardsテーブル
+| Column             | Type     | Options                   |
+| ------------------ | -------- | ------------------------- |
+| number             | integer  | null: false               |
+| deadline           | date     | null: false               |
+| security_code      | integer  | null: false               |
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# association
+- belongs_to :users
