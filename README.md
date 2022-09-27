@@ -17,43 +17,43 @@
 
 
 # productsテーブル(商品情報)
-| Column             | Type     | Options                   |
-| ------------------ | -------- | ------------------------- |
-| name               | string   | null: false               |
-| explanation        | text     | null: false               |
-| category_id        | integer  | null: false               |
-| situation_id       | integer  | null: false               |
-| delivery_charge_id | integer  | null: false               |
-| prefecture_id      | integer  | null: false               |
-| number_of_day_id   | integer  | null: false               |
-| price              | integer  | null: false               |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| name               | string     | null: false                    |
+| explanation        | text       | null: false                    | 
+| category_id        | integer    | null: false                    |
+| situation_id       | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| number_of_day_id   | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 # association
 - belongs_to :user
 - has_one :purchase_record
 
 
-# shipping_addressesテーブル(発送先情報)
-| Column             | Type     | Options                   |
-| ------------------ | -------- | ------------------------- |
-| post_code          | string   | null: false               |
-| prefecture_id      | string   | null: false               |
-| municipality       | string   | null: false               |
-| address            | string   | null: false               |
-| building_name      | string   |                           |
-| phone_number       | string   | null: false               |
+# shipping_addressesテーブル(発送先情報) 
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| post_code          | string     | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| municipality       | string     | null: false                    |
+| address            | string     | null: false                    |
+| building_name      | string     |                                |
+| phone_number       | string     | null: false                    |
+| purchase_record    | references | null: false, foreign_key: true |
 
 # association
-- belongs_to :user
 - belongs_to :purchase_record
 
 
 # purchase_recordsテーブル(購入記録)
-| Column                | Type     | Options                                      |
-| --------------------- | -------- | -------------------------------------------- |
-| name_id               | string   | null: false, foreign_key: true               |               
-| email_id              | string   | null: false, unique: true, foreign_key: true |
-| encrypted_password_id | string   | null: false, foreign_key: true               |
+| Column             | Type         | Options                        |
+| ------------------ | ------------ | ------------------------------ |
+| user               | references   | null: false, foreign_key: true |               
+| product            | references   | null: false, foreign_key: true |
 
 # association
 - belongs_to :user
