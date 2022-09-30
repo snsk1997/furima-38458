@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   #before_action :move_to_index, except: [:index, :show, :new, :create]
 
   def index
-    #@product = Product.all
+    @product = Product.order("created_at DESC")
   end
 
   def new
@@ -18,6 +18,10 @@ class ProductsController < ApplicationController
       render :new
    end
   end
+
+  #def show
+    #@product = Product.find(params[:id])
+  #end
 
   private
   def product_params
