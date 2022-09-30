@@ -73,6 +73,11 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include("Price is invalid. Input half-width characters")
       end
+      it 'userが紐付いていないと出品できない' do
+        @product.user = nil
+        @product.valid?
+        expect(@product.errors.full_messages).to include("User must exist")
+      end
     end
   end
 
