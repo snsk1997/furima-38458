@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index ,:show]
   #before_action :move_to_index, except: [:index, :show, :new, :create]
 
   def index
@@ -19,9 +19,9 @@ class ProductsController < ApplicationController
    end
   end
 
-  #def show
-    #@product = Product.find(params[:id])
-  #end
+  def show
+    @product = Product.find(params[:id])
+  end
 
   private
   def product_params
