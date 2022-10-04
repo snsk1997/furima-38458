@@ -14,7 +14,8 @@ class Order
   end
 
   validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
-  validates :phone_number,  length: { minimum: 9, maximum: 12 , message: "is too short"} 
+  validates :phone_number,  length: { minimum: 9 ,  message: "is too short"} 
+  validates :phone_number,  length: { maximum: 12 , message: "is too long"} 
   
   def save
     purchase_record = PurchaseRecord.create(user_id: user_id, product_id: product_id)
