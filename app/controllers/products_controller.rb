@@ -37,8 +37,10 @@ class ProductsController < ApplicationController
   def destroy
     if @product.destroy
       redirect_to root_path
+    else
+      redirect_to root_path
     end
-    redirect_to root_path
+    
   end
 
   private
@@ -47,7 +49,7 @@ class ProductsController < ApplicationController
   end
 
   def move_to_index
-    unless current_user.id == @product.user_id
+    unless current_user.id == @product.user_id && @product.purchase_record.blank?
       redirect_to action: :index
     end
   end
