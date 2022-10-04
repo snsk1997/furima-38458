@@ -60,12 +60,12 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is invalid. Input half-width characters")
       end
-      it 'phone_numberが9桁以上でなければ購入できない' do
+      it 'phone_numberが10桁以上でなければ購入できない' do
         @order.phone_number = '12345'
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is too short")
       end 
-      it 'phone_numberが12桁以下でなければ購入できない' do
+      it 'phone_numberが11桁以下でなければ購入できない' do
         @order.phone_number = '1234567890000'
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is too long")
