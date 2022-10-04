@@ -1,4 +1,5 @@
 class PurchaseRecordsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_product, only: [:index, :create]
   before_action :move_to_index, only: [:index, :create]
 
@@ -38,9 +39,6 @@ class PurchaseRecordsController < ApplicationController
 
   def move_to_index
     if @product.purchase_record.blank?
-      unless user_signed_in?
-        redirect_to root_path
-      end
       if user_signed_in? && current_user.id == @product.user_id
         redirect_to root_path
       end
