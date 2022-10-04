@@ -3,12 +3,19 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
   
   before do
-    @order = FactoryBot.build(:order)
+    user = FactoryBot.create(:user)
+    product = FactoryBot.create(:product)
+    @order = FactoryBot.build(:order, user_id: user.id, product_id: product.id)
+    sleep 0.1
   end
 
   describe '商品の購入' do
     context '商品が購入できる場合' do
       it 'token, post_code, prefecture_id, municipality, address, phone_numberが存在していれば購入できる' do
+        expect(@order).to be_valid
+      end
+      it '建物名が空でも購入できる' do
+        @order.building_name = ''
         expect(@order).to be_valid
       end
     end
@@ -53,7 +60,7 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is invalid. Input half-width characters")
       end
-      it 'phone_numberは10桁-11桁でなければ購入できない' do
+      it 'phone_numberは9桁-12桁でなければ購入できない' do
         @order.phone_number = '12345'
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is too short")

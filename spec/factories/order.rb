@@ -6,7 +6,5 @@ FactoryBot.define do
     municipality  {'Test市'}
     address       {'Test1111'}
     phone_number  {'09012345678'}
-    user_id       {'testuser'}
-    product_id    {'testproduct'}
   end
 end
