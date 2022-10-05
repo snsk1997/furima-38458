@@ -13,7 +13,7 @@ class Order
     validates :product_id     
   end
 
-  validates :prefecture_id, numericality: {other_than: 0, message: "can't be blank"}
+  validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
   validates :phone_number,  length: { minimum: 10 , message: "is too short"} 
   validates :phone_number,  length: { maximum: 11 , message: "is too long"} 
   
