@@ -5,17 +5,17 @@ class Order
 
   with_options presence: true do
     validates :token         
-    validates :post_code,    format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :post_code,    format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "は(-)を含めてください"}
     validates :municipality 
     validates :address       
-    validates :phone_number, numericality: {only_integer: true, message: "is invalid. Input half-width characters"}
+    validates :phone_number, numericality: {only_integer: true, message: "は半角数字を入力してください"}
     validates :user_id       
     validates :product_id     
   end
 
-  validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
-  validates :phone_number,  length: { minimum: 10 , message: "is too short"} 
-  validates :phone_number,  length: { maximum: 11 , message: "is too long"} 
+  validates :prefecture_id, numericality: {other_than: 1, message: "を選んでください"}
+  validates :phone_number,  length: { minimum: 10 , message: "が短過ぎます"} 
+  validates :phone_number,  length: { maximum: 11 , message: "が長過ぎます"} 
   
   def save
     purchase_record = PurchaseRecord.create(user_id: user_id, product_id: product_id)
